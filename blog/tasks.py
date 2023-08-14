@@ -4,8 +4,10 @@ from celery import shared_task
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 
-from News_Portal import settings
-from news.models import Categories, News
+from pet_proj_dj import settings
+
+from blog.models import Categories, News
+
 
 # Рассылка новостей за последнюю неделю
 @shared_task

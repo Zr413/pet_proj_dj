@@ -94,7 +94,7 @@ class NewsDetail(DetailView):
 class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     logger.info("INFO")
 
-    permission_required = ('news.add_news',)
+    permission_required = ('blog.add_news',)
     raise_exception = True
     form_class = NewsForm
     model = News
@@ -125,7 +125,7 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 class NewsUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     logger.info("INFO")
 
-    permission_required = ('news.change_news',)
+    permission_required = ('blog.change_news',)
     form_class = NewsForm
     model = News
     template_name = 'news_edit.html'
@@ -152,7 +152,7 @@ class NewsUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class NewsDelete(PermissionRequiredMixin, UserPassesTestMixin, DeleteView):
     logger.info("INFO")
 
-    permission_required = ('news.delete_news',)
+    permission_required = ('blog.delete_news',)
     model = News
     template_name = 'news_delete.html'
     success_url = reverse_lazy('news_list')
@@ -203,7 +203,7 @@ class NewsSearch(ListView):
 class ArticleCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     logger.info("INFO")
 
-    permission_required = ('news.add_news',)
+    permission_required = ('blog.add_news',)
     raise_exception = True
     form_class = NewsForm
     model = News
@@ -235,7 +235,7 @@ class ArticleCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 class ArticleUpdate(PermissionRequiredMixin, UserPassesTestMixin, UpdateView):
     logger.info("INFO")
 
-    permission_required = ('news.change_news',)
+    permission_required = ('blog.change_news',)
     form_class = NewsForm
     model = News
     template_name = 'article_edit.html'
@@ -262,7 +262,7 @@ class ArticleUpdate(PermissionRequiredMixin, UserPassesTestMixin, UpdateView):
 class ArticleDelete(PermissionRequiredMixin, UserPassesTestMixin, DeleteView):
     logger.info("INFO")
 
-    permission_required = ('news.delete_news',)
+    permission_required = ('blog.delete_news',)
     model = News
     template_name = 'article_delete.html'
     success_url = reverse_lazy('news_list')
@@ -383,3 +383,4 @@ class GetList(APIView):
     def get(self, request):
         ob = News.objects.all()
         return Response(ob, status=status.HTTP_200_OK)
+
