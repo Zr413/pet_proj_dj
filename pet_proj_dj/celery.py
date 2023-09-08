@@ -16,3 +16,4 @@ app.conf.beat_schedule = {
         # 'args': (), hour=8, minute=0, day_of_week='monday'
     },
 }
+
