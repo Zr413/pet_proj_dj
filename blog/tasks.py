@@ -57,3 +57,6 @@ def send_notifications(preview, pk, title, subscribes):
 
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
+
+
+
