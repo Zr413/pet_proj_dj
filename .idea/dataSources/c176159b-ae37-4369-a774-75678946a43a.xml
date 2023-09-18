@@ -3,7 +3,15 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.45">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <Grants>16384||-9223372036854775808|c|G
+      <Grants>1||-9223372036854775808|c|G
+1||10|c|G
+1||10|C|G
+1||10|T|G
+13764||-9223372036854775808|c|G
+13764||10|c|G
+13764||10|C|G
+13764||10|T|G
+16384||-9223372036854775808|c|G
 16384||10|c|G
 16384||16385|c|G
 16384||10|C|G
@@ -11,9 +19,9 @@
 16384||-9223372036854775808|T|G
 16384||10|T|G
 16384||16385|T|G</Grants>
-      <IntrospectionStateNumber>1316</IntrospectionStateNumber>
-      <ServerVersion>14.8</ServerVersion>
-      <StartupTime>1689842274</StartupTime>
+      <IntrospectionStateNumber>1746</IntrospectionStateNumber>
+      <ServerVersion>14.9</ServerVersion>
+      <StartupTime>1693493113</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -238,7 +246,7 @@ false America/Rio_Branco
 false America/Rosario
 true America/Santa_Isabel
 false America/Santarem
-false America/Santiago
+true America/Santiago
 false America/Santo_Domingo
 false America/Sao_Paulo
 true America/Scoresbysund
@@ -436,7 +444,7 @@ false CHAST
 false CHUT
 false CKT
 true CLST
-false CLT
+true CLT
 false COT
 false CST
 true CST6CDT
@@ -449,13 +457,13 @@ true Canada/Newfoundland
 true Canada/Pacific
 false Canada/Saskatchewan
 false Canada/Yukon
-false Chile/Continental
-false Chile/EasterIsland
+true Chile/Continental
+true Chile/EasterIsland
 true Cuba
 false DAVT
 false DDUT
-false EASST
-false EAST
+true EASST
+true EAST
 false EAT
 true EDT
 true EEST
@@ -692,7 +700,7 @@ false Pacific/Auckland
 false Pacific/Bougainville
 false Pacific/Chatham
 false Pacific/Chuuk
-false Pacific/Easter
+true Pacific/Easter
 false Pacific/Efate
 false Pacific/Enderbury
 false Pacific/Fakaofo
@@ -994,7 +1002,7 @@ false posix/America/Rio_Branco
 false posix/America/Rosario
 true posix/America/Santa_Isabel
 false posix/America/Santarem
-false posix/America/Santiago
+true posix/America/Santiago
 false posix/America/Santo_Domingo
 false posix/America/Sao_Paulo
 true posix/America/Scoresbysund
@@ -1180,8 +1188,8 @@ true posix/Canada/Newfoundland
 true posix/Canada/Pacific
 false posix/Canada/Saskatchewan
 false posix/Canada/Yukon
-false posix/Chile/Continental
-false posix/Chile/EasterIsland
+true posix/Chile/Continental
+true posix/Chile/EasterIsland
 true posix/Cuba
 true posix/EET
 false posix/EST
@@ -1331,7 +1339,7 @@ false posix/Pacific/Auckland
 false posix/Pacific/Bougainville
 false posix/Pacific/Chatham
 false posix/Pacific/Chuuk
-false posix/Pacific/Easter
+true posix/Pacific/Easter
 false posix/Pacific/Efate
 false posix/Pacific/Enderbury
 false posix/Pacific/Fakaofo
@@ -1409,7 +1417,7 @@ true posixrules
 13399||10|C|G
 13399||-9223372036854775808|U|G
 13399||10|U|G</Grants>
-      <IntrospectionStateNumber>1316</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1746</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4846,7 +4854,7 @@ TimeZone=UTC</Config>
     <schema id="263" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>1316</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1746</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>526</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -5147,7 +5155,7 @@ TimeZone=UTC</Config>
     </table>
     <table id="313" parent="263" name="socialaccount_socialapp">
       <ObjectId>17592</ObjectId>
-      <StateNumber>1227</StateNumber>
+      <StateNumber>1403</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>pet_user</OwnerName>
     </table>
@@ -5221,28 +5229,30 @@ TimeZone=UTC</Config>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="323" parent="289" name="account_emailaddress_email_key">
+    <index id="323" parent="289" name="unique_verified_email">
       <ColNames>email</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17335</ObjectId>
-      <StateNumber>1190</StateNumber>
+      <Condition>verified</Condition>
+      <ObjectId>17652</ObjectId>
+      <StateNumber>1401</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="324" parent="289" name="account_emailaddress_email_03be32b2_like">
-      <ColNames>email</ColNames>
-      <ObjectId>17337</ObjectId>
-      <StateNumber>1190</StateNumber>
+    <index id="324" parent="289" name="account_emailaddress_user_id_email_987c8728_uniq">
+      <ColNames>user_id
+email</ColNames>
+      <ObjectId>17650</ObjectId>
+      <StateNumber>1401</StateNumber>
+      <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
-      <ClassNames>varchar_pattern_ops</ClassNames>
-      <ClassIds>4218</ClassIds>
-      <ClassParentNames>pg_catalog</ClassParentNames>
-      <CollationNames>default</CollationNames>
-      <CollationIds>100</CollationIds>
-      <CollationParentNames>pg_catalog</CollationParentNames>
+      <CollationIds>
+100</CollationIds>
+      <CollationParentNames>
+pg_catalog</CollationParentNames>
+      <CollationNames>
+default</CollationNames>
     </index>
     <index id="325" parent="289" name="account_emailaddress_user_id_2c513194">
       <ColNames>user_id</ColNames>
@@ -5257,11 +5267,10 @@ TimeZone=UTC</Config>
       <StateNumber>1188</StateNumber>
       <UnderlyingIndexId>17309</UnderlyingIndexId>
     </key>
-    <key id="327" parent="289" name="account_emailaddress_email_key">
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17336</ObjectId>
-      <StateNumber>1190</StateNumber>
-      <UnderlyingIndexId>17335</UnderlyingIndexId>
+    <key id="327" parent="289" name="account_emailaddress_user_id_email_987c8728_uniq">
+      <ObjectId>17651</ObjectId>
+      <StateNumber>1401</StateNumber>
+      <UnderlyingIndexId>17650</UnderlyingIndexId>
     </key>
     <column id="328" parent="290" name="id">
       <DasType>integer|0s</DasType>
@@ -7164,10 +7173,10 @@ site_id</ColNames>
       <TypeId>23</TypeId>
     </column>
     <column id="566" parent="312" name="provider">
-      <DasType>varchar(30)|0s</DasType>
+      <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>1225</StateNumber>
+      <StateNumber>1403</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="567" parent="312" name="uid">
@@ -7229,8 +7238,8 @@ site_id</ColNames>
     <index id="574" parent="312" name="socialaccount_socialaccount_provider_uid_fc810c6e_uniq">
       <ColNames>provider
 uid</ColNames>
-      <ObjectId>17613</ObjectId>
-      <StateNumber>1225</StateNumber>
+      <ObjectId>17655</ObjectId>
+      <StateNumber>1403</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>100
@@ -7254,9 +7263,9 @@ pg_catalog</CollationParentNames>
       <UnderlyingIndexId>17589</UnderlyingIndexId>
     </key>
     <key id="577" parent="312" name="socialaccount_socialaccount_provider_uid_fc810c6e_uniq">
-      <ObjectId>17614</ObjectId>
-      <StateNumber>1225</StateNumber>
-      <UnderlyingIndexId>17613</UnderlyingIndexId>
+      <ObjectId>17656</ObjectId>
+      <StateNumber>1403</StateNumber>
+      <UnderlyingIndexId>17655</UnderlyingIndexId>
     </key>
     <column id="578" parent="313" name="id">
       <DasType>integer|0s</DasType>
@@ -7302,7 +7311,21 @@ pg_catalog</CollationParentNames>
       <StateNumber>1227</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="584" parent="313" name="socialaccount_socialapp_pkey">
+    <column id="584" parent="313" name="provider_id">
+      <DasType>varchar(200)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StateNumber>1403</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="585" parent="313" name="settings">
+      <DasType>jsonb|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StateNumber>1403</StateNumber>
+      <TypeId>3802</TypeId>
+    </column>
+    <index id="586" parent="313" name="socialaccount_socialapp_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17595</ObjectId>
@@ -7311,14 +7334,14 @@ pg_catalog</CollationParentNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="585" parent="313" name="socialaccount_socialapp_pkey">
+    <key id="587" parent="313" name="socialaccount_socialapp_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17596</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1225</StateNumber>
       <UnderlyingIndexId>17595</UnderlyingIndexId>
     </key>
-    <column id="586" parent="314" name="id">
+    <column id="588" parent="314" name="id">
       <DasType>bigint|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
@@ -7327,21 +7350,21 @@ pg_catalog</CollationParentNames>
       <SequenceId>17597</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="587" parent="314" name="socialapp_id">
+    <column id="589" parent="314" name="socialapp_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1225</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="588" parent="314" name="site_id">
+    <column id="590" parent="314" name="site_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1225</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="589" parent="314" name="socialaccount_social_socialapp_id_97fb6e7d_fk_socialacc">
+    <foreign-key id="591" parent="314" name="socialaccount_social_socialapp_id_97fb6e7d_fk_socialacc">
       <ColNames>socialapp_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
@@ -7353,7 +7376,7 @@ pg_catalog</CollationParentNames>
       <RefTableName>socialaccount_socialapp</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="590" parent="314" name="socialaccount_social_site_id_2579dee5_fk_django_si">
+    <foreign-key id="592" parent="314" name="socialaccount_social_site_id_2579dee5_fk_django_si">
       <ColNames>site_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
@@ -7365,7 +7388,7 @@ pg_catalog</CollationParentNames>
       <RefTableName>django_site</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="591" parent="314" name="socialaccount_socialapp_sites_pkey">
+    <index id="593" parent="314" name="socialaccount_socialapp_sites_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17601</ObjectId>
@@ -7374,7 +7397,7 @@ pg_catalog</CollationParentNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="592" parent="314" name="socialaccount_socialapp__socialapp_id_site_id_71a9a768_uniq">
+    <index id="594" parent="314" name="socialaccount_socialapp__socialapp_id_site_id_71a9a768_uniq">
       <ColNames>socialapp_id
 site_id</ColNames>
       <ObjectId>17621</ObjectId>
@@ -7382,31 +7405,31 @@ site_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="593" parent="314" name="socialaccount_socialapp_sites_socialapp_id_97fb6e7d">
+    <index id="595" parent="314" name="socialaccount_socialapp_sites_socialapp_id_97fb6e7d">
       <ColNames>socialapp_id</ColNames>
       <ObjectId>17633</ObjectId>
       <StateNumber>1225</StateNumber>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="594" parent="314" name="socialaccount_socialapp_sites_site_id_2579dee5">
+    <index id="596" parent="314" name="socialaccount_socialapp_sites_site_id_2579dee5">
       <ColNames>site_id</ColNames>
       <ObjectId>17634</ObjectId>
       <StateNumber>1225</StateNumber>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="595" parent="314" name="socialaccount_socialapp_sites_pkey">
+    <key id="597" parent="314" name="socialaccount_socialapp_sites_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17602</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1225</StateNumber>
       <UnderlyingIndexId>17601</UnderlyingIndexId>
     </key>
-    <key id="596" parent="314" name="socialaccount_socialapp__socialapp_id_site_id_71a9a768_uniq">
+    <key id="598" parent="314" name="socialaccount_socialapp__socialapp_id_site_id_71a9a768_uniq">
       <ObjectId>17622</ObjectId>
       <StateNumber>1225</StateNumber>
       <UnderlyingIndexId>17621</UnderlyingIndexId>
     </key>
-    <column id="597" parent="315" name="id">
+    <column id="599" parent="315" name="id">
       <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
@@ -7415,41 +7438,41 @@ site_id</ColNames>
       <SequenceId>17603</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="598" parent="315" name="token">
+    <column id="600" parent="315" name="token">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1225</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="599" parent="315" name="token_secret">
+    <column id="601" parent="315" name="token_secret">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1225</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="600" parent="315" name="expires_at">
+    <column id="602" parent="315" name="expires_at">
       <DasType>timestamp with time zone|0s</DasType>
       <Position>4</Position>
       <StateNumber>1225</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="601" parent="315" name="account_id">
+    <column id="603" parent="315" name="account_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1225</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="602" parent="315" name="app_id">
+    <column id="604" parent="315" name="app_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>1225</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="603" parent="315" name="socialaccount_social_account_id_951f210e_fk_socialacc">
+    <foreign-key id="605" parent="315" name="socialaccount_social_account_id_951f210e_fk_socialacc">
       <ColNames>account_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
@@ -7461,7 +7484,7 @@ site_id</ColNames>
       <RefTableName>socialaccount_socialaccount</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="604" parent="315" name="socialaccount_social_app_id_636a42d7_fk_socialacc">
+    <foreign-key id="606" parent="315" name="socialaccount_social_app_id_636a42d7_fk_socialacc">
       <ColNames>app_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
@@ -7473,7 +7496,7 @@ site_id</ColNames>
       <RefTableName>socialaccount_socialapp</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="605" parent="315" name="socialaccount_socialtoken_pkey">
+    <index id="607" parent="315" name="socialaccount_socialtoken_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17609</ObjectId>
@@ -7482,7 +7505,7 @@ site_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="606" parent="315" name="socialaccount_socialtoken_app_id_account_id_fca4e0ac_uniq">
+    <index id="608" parent="315" name="socialaccount_socialtoken_app_id_account_id_fca4e0ac_uniq">
       <ColNames>app_id
 account_id</ColNames>
       <ObjectId>17611</ObjectId>
@@ -7490,26 +7513,26 @@ account_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="607" parent="315" name="socialaccount_socialtoken_account_id_951f210e">
+    <index id="609" parent="315" name="socialaccount_socialtoken_account_id_951f210e">
       <ColNames>account_id</ColNames>
       <ObjectId>17645</ObjectId>
       <StateNumber>1225</StateNumber>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="608" parent="315" name="socialaccount_socialtoken_app_id_636a42d7">
+    <index id="610" parent="315" name="socialaccount_socialtoken_app_id_636a42d7">
       <ColNames>app_id</ColNames>
       <ObjectId>17646</ObjectId>
       <StateNumber>1225</StateNumber>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="609" parent="315" name="socialaccount_socialtoken_pkey">
+    <key id="611" parent="315" name="socialaccount_socialtoken_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17610</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1225</StateNumber>
       <UnderlyingIndexId>17609</UnderlyingIndexId>
     </key>
-    <key id="610" parent="315" name="socialaccount_socialtoken_app_id_account_id_fca4e0ac_uniq">
+    <key id="612" parent="315" name="socialaccount_socialtoken_app_id_account_id_fca4e0ac_uniq">
       <ObjectId>17612</ObjectId>
       <StateNumber>1225</StateNumber>
       <UnderlyingIndexId>17611</UnderlyingIndexId>

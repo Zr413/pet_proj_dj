@@ -13,6 +13,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils import timezone
+from django.views.decorators.csrf import csrf_protect
 from django.views.generic import (ListView, DetailView,
                                   CreateView, UpdateView,
                                   DeleteView)
@@ -326,6 +327,37 @@ def subscrib(request, pk):
     return render(request, 'subscribe.html', {'categori': subscribes, 'message': message})
 
 
+'''@login_required
+@csrf_protect
+def subscriptions(request):
+    if request.method == 'POST':
+        category_id = request.POST.get('category_id')
+        category = Categories.objects.get(id=category_id)
+        action = request.POST.get('action')
+
+        if action == 'subscribe':
+            Subscription.objects.create(user=request.user, category=category)
+        elif action == 'unsubscribe':
+            Subscription.objects.filter(
+                user=request.user,
+                category=category,
+            ).delete()
+
+    categories_with_subscriptions = Category.objects.annotate(
+        user_subscribed=Exists(
+            Subscription.objects.filter(
+                user=request.user,
+                category=OuterRef('pk'),
+            )
+        )
+    ).order_by('name')
+    return render(
+        request,
+        'subscriptions.html',
+        {'categories': categories_with_subscriptions},
+    )'''
+
+
 class NewsViewset(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
@@ -383,4 +415,3 @@ class GetList(APIView):
     def get(self, request):
         ob = News.objects.all()
         return Response(ob, status=status.HTTP_200_OK)
-

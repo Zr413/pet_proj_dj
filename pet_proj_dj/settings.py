@@ -30,7 +30,7 @@ DOMAIN = os.getenv("DOMAIN")
 EMAIL = os.getenv("EMAIL")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -168,7 +168,7 @@ STATIC_URL = 'static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = "/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -186,14 +186,29 @@ ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 #     "SCHEMA": "blog.schema.schema",
 # }
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_F_E')
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+# DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_F_E')
 
 SITE_URL = 'http://127.0.0.1:8000/'
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 
 APSCHEDULER_RUN_NOW_TIMEOUT = 25
+
+# Настройки celery и redis
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+SELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
 
 # настройки кеширования
 CACHES = {
