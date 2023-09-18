@@ -5,7 +5,7 @@ from allauth.account.forms import SignupForm
 from django.contrib.auth.models import Group
 from blog.models import Author
 
-'''
+
 # Форма регистрации
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label="Email")
@@ -22,7 +22,7 @@ class SignUpForm(UserCreationForm):
             "password1",
             "password2",
         )
-'''
+
 
 # Привязка группы "authors" по умолчанию к зарегистрированному пользователю
 class CustomSignupForm(SignupForm):

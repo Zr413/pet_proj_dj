@@ -1,4 +1,4 @@
-'''from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView
 from .forms import CustomSignupForm
 from blog.models import Author
 
@@ -9,4 +9,4 @@ class SignUp(CreateView):
     success_url = '/accounts/login'
 
     template_name = 'registration/signup.html'
-'''
+

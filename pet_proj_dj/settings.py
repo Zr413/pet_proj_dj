@@ -175,6 +175,7 @@ STATIC_ROOT = '/var/www/static/'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+    'social_auth.backends.contrib.yandex.YandexOAuth2Backend',
 ]
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -185,11 +186,12 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 #ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'none'
 
 ACCOUNT_FORMS = {
     'signup': 'accounts.forms.CustomSignupForm'
 }
+
 
 CLIENT_ID = os.getenv("CLIENT_ID")
 SECRET = os.getenv("SECRET")
@@ -208,18 +210,19 @@ SOCIALACCOUNT_PROVIDERS = {
 
 # настройки рассылки email
 
-EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
-EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
-EMAIL_HOST_USER = os.getenv('EMAIL_H_U')  # ваше имя пользователя, например, если ваша почта user@yandex.ru,
-# то сюда надо писать user, иными словами, это всё то что идёт до собаки
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_H_P')  # пароль от почты
-EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте
-# в дополнительных источниках, но включать его здесь обязательно
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 
 # Celery settings
-CELERY_BROKER_URL = "redis://localhost:6379/"
-CELERY_RESULT_BACKEND = "redis://localhost:6379/"
+CELERY_BROKER_URL = "redis://185.234.10.43:6379/0"
+CELERY_RESULT_BACKEND = "redis://185.234.10.43:6379/0"
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALISER = 'json'
 SELERY_TASK_SERIALIZER = 'json'
@@ -227,8 +230,6 @@ SELERY_TASK_SERIALIZER = 'json'
 #     "SCHEMA": "blog.schema.schema",
 # }
 
-
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_F_E')
 
 SITE_URL = 'http://185.234.10.43:80/'
 
